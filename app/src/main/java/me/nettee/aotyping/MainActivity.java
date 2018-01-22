@@ -8,19 +8,20 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
 
     private EditText mEditText;
+    private SoftKeyboard mKeyboard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mEditText = (EditText) findViewById(R.id.editText_word);
-        final AllKeyboardUtil keyboardUtil = new AllKeyboardUtil(MainActivity.this);
-
+        mKeyboard = new SoftKeyboard(MainActivity.this);
         mEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                keyboardUtil.attachTo(mEditText);
+                mKeyboard.attachTo(mEditText);
             }
         });
     }

@@ -15,16 +15,17 @@ import android.util.AttributeSet;
 import java.lang.reflect.Field;
 import java.util.List;
 
-public class MyKeyBoardView extends KeyboardView {
-    private Context  mContext;
+public class SoftKeyboardView extends KeyboardView {
+
+    private Context mContext;
     private Keyboard mKeyBoard;
 
-    public MyKeyBoardView(Context context, AttributeSet attrs) {
+    public SoftKeyboardView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.mContext = context;
     }
 
-    public MyKeyBoardView(Context context, AttributeSet attrs, int defStyle) {
+    public SoftKeyboardView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         this.mContext = context;
     }
@@ -43,9 +44,17 @@ public class MyKeyBoardView extends KeyboardView {
 
         if (keys != null) {
             for (Key key : keys) {
-                // 数字键盘的处理
-                if (key.codes[0] == -4) {
-                    //重画确定键
+                // 键盘的处理
+                if (key.codes[0] == -3){
+                    //重画完成键
+                    drawKeyBackground(R.drawable.bg_keyboardview_yes, canvas, key);
+                    drawText(canvas, key);
+                }else if (key.codes[0] == -5){
+                    //重画退格
+                    drawKeyBackground(R.drawable.bg_keyboardview_backspace, canvas, key);
+                    drawText(canvas, key);
+                }else if (key.codes[0] == -1){
+                    //重画大写
                     drawKeyBackground(R.drawable.bg_keyboardview_yes, canvas, key);
                     drawText(canvas, key);
                 }
