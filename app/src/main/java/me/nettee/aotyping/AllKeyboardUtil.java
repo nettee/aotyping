@@ -1,4 +1,4 @@
-package com.example.admin.mykeyboardview;
+package me.nettee.aotyping;
 
 import android.app.Activity;
 import android.content.Context;
@@ -29,7 +29,7 @@ public class AllKeyboardUtil {
 
     public AllKeyboardUtil(Activity activity) {
         this.mActivity = activity;
-        mKeyboardNumber = new Keyboard(mActivity, R.xml.custom_keyboardnumber);
+        mKeyboardNumber = new Keyboard(mActivity, R.xml.keyboard);
         mKeyboardView = (MyAllKeyBoardView) mActivity.findViewById(R.id.keyboard_view);
     }
 
@@ -45,7 +45,7 @@ public class AllKeyboardUtil {
     }
     public void showSoftKeyboard() {
         if (mKeyboardNumber == null) {
-            mKeyboardNumber = new Keyboard(mActivity, R.xml.custom_keyboardnumber);
+            mKeyboardNumber = new Keyboard(mActivity, R.xml.keyboard);
         }
         if (mKeyboardView == null) {
             mKeyboardView = (MyKeyBoardView) mActivity.findViewById(R.id.keyboard_view);

@@ -4,7 +4,7 @@
     android:id="@+id/activity_all_key_board"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.admin.mykeyboardview.MainActivity">
+    tools:context="com.example.admin.mykeyboardview.me.nettee.aotyping.MainActivity">
 
     <EditText
         android:id="@+id/editText_word"

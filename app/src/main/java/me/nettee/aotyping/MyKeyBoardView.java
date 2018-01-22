@@ -1,4 +1,4 @@
-package com.example.admin.mykeyboardview;
+package me.nettee.aotyping;
 
 import android.content.Context;
 import android.graphics.Canvas;
