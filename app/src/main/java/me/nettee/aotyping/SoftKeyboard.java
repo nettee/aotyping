@@ -33,8 +33,8 @@ public class SoftKeyboard {
     public void attachTo(EditText editText) {
         this.mEditText = editText;
         hideSystemSofeKeyboard(mActivity.getApplicationContext(), mEditText);
-        mKeyboardView.setKeyboard(mKeyboard);
 
+        mKeyboardView.setKeyboard(mKeyboard);
         mKeyboardView.setEnabled(true);
         mKeyboardView.setPreviewEnabled(false);
         mKeyboardView.setVisibility(View.VISIBLE);
