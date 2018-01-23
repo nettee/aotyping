@@ -4,14 +4,14 @@
     android:id="@+id/activity_all_key_board"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.admin.mykeyboardview.me.nettee.aotyping.MainActivity">
+    tools:context="me.nettee.aotyping.MainActivity">
 
     <EditText
         android:id="@+id/editText_word"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="64dp"
-        android:layout_marginRight="64dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
         android:layout_marginTop="8dp"
         android:hint="请输入单词"
         android:inputType="text" />
@@ -26,7 +26,30 @@
         android:layout_alignStart="@+id/editText_word"
         android:layout_below="@+id/editText_word"
         android:layout_marginTop="16dp"
-        android:text="已输入单词：" />
+        android:text="已输入单词:" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView_word"
+        android:layout_alignLeft="@+id/textView_word"
+        android:layout_alignRight="@+id/textView_word"
+        android:layout_alignStart="@+id/textView_word"
+        android:layout_below="@+id/textView_word"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/textView_log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/seekBar"
+        android:layout_alignLeft="@+id/seekBar"
+        android:layout_alignRight="@+id/seekBar"
+        android:layout_alignStart="@+id/seekBar"
+        android:layout_below="@+id/seekBar"
+        android:layout_marginTop="16dp"
+        />
 
     <include
         layout="@layout/include_all_keyboardview"

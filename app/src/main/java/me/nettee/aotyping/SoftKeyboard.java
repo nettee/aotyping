@@ -44,13 +44,21 @@ public class SoftKeyboard {
     private class KeyBoardListener implements KeyboardView.OnKeyboardActionListener {
 
         @Override
-        public void onPress(int i) {
-
+        public void onPress(int code) {
+            if (code == Keyboard.KEYCODE_CANCEL || code == Keyboard.KEYCODE_DELETE || code == Keyboard.KEYCODE_SHIFT) {
+                return;
+            }
+            char c = (char) code;
+            mMainActivity.onSoftKeyPress(c);
         }
 
         @Override
-        public void onRelease(int i) {
-
+        public void onRelease(int code) {
+            if (code == Keyboard.KEYCODE_CANCEL || code == Keyboard.KEYCODE_DELETE || code == Keyboard.KEYCODE_SHIFT) {
+                return;
+            }
+            char c = (char) code;
+            mMainActivity.onSoftKeyRelease(c);
         }
 
         @Override
