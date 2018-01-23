@@ -6,6 +6,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,8 +29,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private Sensor mSensor;
 
     private Acceleration mLastAcc = new Acceleration(0, 0, 0);
+
     private float mLargestAccValue = 0.0f;
-    private List<Float> mAccList = new LinkedList<>();
+    private List<Float> mTouchSizes = new LinkedList<>();
+
+    private List<Float> mMaxAccList = new LinkedList<>();
+    private List<Float> mAvgTouchSizeList = new LinkedList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,16 +96,30 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     public void onSoftKeyPress(char c) {
+
+        // Reset word
         if (mEditText.getText().toString().length() == 0) {
             mLogTextView.setText("");
         }
+
         mLogTextView.append(String.format("Press %c (largest acc = %.2f)\n", c, mLargestAccValue));
-        mAccList.add(mLargestAccValue);
+        mMaxAccList.add(mLargestAccValue);
     }
 
     public void onSoftKeyRelease(char c) {
-//        mLogTextView.append(String.format("Release %c (and reset acc values)\n", c));
+
+        float averageTouchSize = average(mTouchSizes);
+        mLogTextView.append(String.format("Release %c (average touch size = %.4f)\n", c, averageTouchSize));
+        mAvgTouchSizeList.add(averageTouchSize);
+
+        // Reset letter
         mLargestAccValue = 0.0f;
+        mTouchSizes.clear();
+    }
+
+    public void onSoftKeyboardTouch(MotionEvent event) {
+        float size = event.getSize();
+        mTouchSizes.add(size);
     }
 
     public void onSoftKeyboardFinish() {
@@ -108,11 +127,34 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mEditText.getText().clear();
         if (word.length() > 0) {
             mTextView.setText(String.format("已输入单词: %s", word));
-            for (float a : mAccList) {
-                mLogTextView.append(String.format("%.2f ", a));
-            }
-            mLogTextView.append("\n");
-            mAccList.clear();
+
+            mLogTextView.append(String.format("Max acc list: %s\n", toString(mMaxAccList, "%.2f")));
+            mLogTextView.append(String.format("Avg touch size list: %s\n", toString(mAvgTouchSizeList, "%.4f")));
+
+            // Reset word
+            mMaxAccList.clear();
+            mAvgTouchSizeList.clear();
         }
+    }
+
+    private static float average(List<Float> fs) {
+        float s = 0.0f;
+        for (float f : fs) {
+            s += f;
+        }
+        return s / fs.size();
+    }
+
+    private static String toString(List<Float> fs, String formatter) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < fs.size(); i++) {
+            sb.append(String.format(formatter, fs.get(i)));
+            if (i < fs.size() - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
     }
 }

@@ -6,9 +6,11 @@ import android.inputmethodservice.KeyboardView;
 import android.os.Build;
 import android.text.Editable;
 import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.lang.reflect.Method;
 
@@ -37,7 +39,16 @@ public class SoftKeyboard {
         mKeyboardView.setEnabled(true);
         mKeyboardView.setPreviewEnabled(false);
         mKeyboardView.setVisibility(View.VISIBLE);
+
         mKeyboardView.setOnKeyboardActionListener(new KeyBoardListener());
+
+        mKeyboardView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                mMainActivity.onSoftKeyboardTouch(event);
+                return false;
+            }
+        });
 
     }
 
