@@ -6,12 +6,16 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.w3c.dom.Text;
 
@@ -131,12 +135,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if (word.length() > 0) {
             mTextView.setText(String.format("已输入单词: %s", word));
 
-            mResultTextView.setText("");
-            mResultTextView.append(String.format("Word: %s\n", word));
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
             String maxAccList = toString(mMaxAccList, "%.2f");
             String avgTouchSizeList = toString(mAvgTouchSizeList, "%.4f");
-            mResultTextView.append(String.format("Max acc list: %s\n", maxAccList));
-            mResultTextView.append(String.format("Avg touch size list: %s\n", avgTouchSizeList));
+            WordResult wordResult = new WordResult(word, maxAccList, avgTouchSizeList);
+
+            String jsonString = gson.toJson(wordResult);
+            mResultTextView.setText(jsonString);
 
             // Reset word
             mMaxAccList.clear();

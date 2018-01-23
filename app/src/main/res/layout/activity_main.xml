@@ -65,7 +65,7 @@
         android:layout_below="@+id/textView_log"
         android:layout_marginTop="16dp"
         android:textIsSelectable="true"
-        android:lines="8"
+        android:maxLines="8"
         android:scrollbars="vertical"
         />
 
