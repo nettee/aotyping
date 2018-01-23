@@ -51,6 +51,19 @@
         android:layout_marginTop="16dp"
         />
 
+    <TextView
+        android:id="@+id/textView_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView_log"
+        android:layout_alignLeft="@+id/textView_log"
+        android:layout_alignRight="@+id/textView_log"
+        android:layout_alignStart="@+id/textView_log"
+        android:layout_below="@+id/textView_log"
+        android:layout_marginTop="16dp"
+        android:textIsSelectable="true"
+        />
+
     <include
         layout="@layout/include_all_keyboardview"
         android:layout_width="match_parent"

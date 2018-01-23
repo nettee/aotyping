@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private TextView mTextView;
     private SeekBar mSeekBar;
     private TextView mLogTextView;
-    private Button mClearButton;
+    private TextView mResultTextView;
     private SoftKeyboard mKeyboard;
 
     private SensorManager mSensorManager;
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mTextView = (TextView) findViewById(R.id.textView_word);
         mSeekBar = (SeekBar) findViewById(R.id.seekBar);
         mLogTextView = (TextView) findViewById(R.id.textView_log);
+        mResultTextView = (TextView) findViewById(R.id.textView_result);
         mKeyboard = new SoftKeyboard(MainActivity.this);
 
         mSeekBar.setEnabled(false);
@@ -128,8 +131,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         if (word.length() > 0) {
             mTextView.setText(String.format("已输入单词: %s", word));
 
-            mLogTextView.append(String.format("Max acc list: %s\n", toString(mMaxAccList, "%.2f")));
-            mLogTextView.append(String.format("Avg touch size list: %s\n", toString(mAvgTouchSizeList, "%.4f")));
+            mResultTextView.setText("");
+            mResultTextView.append(String.format("Max acc list: %s\n", toString(mMaxAccList, "%.2f")));
+            mResultTextView.append(String.format("Avg touch size list: %s\n", toString(mAvgTouchSizeList, "%.4f")));
 
             // Reset word
             mMaxAccList.clear();
