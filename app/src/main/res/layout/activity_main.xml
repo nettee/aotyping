@@ -16,9 +16,23 @@
         android:hint="请输入单词"
         android:inputType="text" />
 
+    <TextView
+        android:id="@+id/textView_word"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/editText_word"
+        android:layout_alignLeft="@+id/editText_word"
+        android:layout_alignRight="@+id/editText_word"
+        android:layout_alignStart="@+id/editText_word"
+        android:layout_below="@+id/editText_word"
+        android:layout_marginTop="16dp"
+        android:text="已输入单词：" />
+
     <include
         layout="@layout/include_all_keyboardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"/>
+
+
 </RelativeLayout>

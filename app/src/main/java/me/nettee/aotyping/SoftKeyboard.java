@@ -1,6 +1,5 @@
 package me.nettee.aotyping;
 
-import android.app.Activity;
 import android.content.Context;
 import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
@@ -16,15 +15,15 @@ import java.lang.reflect.Method;
 public class SoftKeyboard {
 
     public boolean isUpper = false;
-    private Activity mActivity;
+    private MainActivity mMainActivity;
     private KeyboardView mKeyboardView;
     private Keyboard mKeyboard;
-    private EditText       mEditText;
+    private EditText mEditText;
 
-    public SoftKeyboard(Activity activity) {
-        mActivity = activity;
-        mKeyboard = new Keyboard(mActivity, R.xml.keyboard);
-        mKeyboardView = (SoftKeyboardView) mActivity.findViewById(R.id.keyboard_view);
+    public SoftKeyboard(MainActivity activity) {
+        mMainActivity = activity;
+        mKeyboard = new Keyboard(mMainActivity, R.xml.keyboard);
+        mKeyboardView = (SoftKeyboardView) mMainActivity.findViewById(R.id.keyboard_view);
     }
 
     /**
@@ -32,7 +31,7 @@ public class SoftKeyboard {
      */
     public void attachTo(EditText editText) {
         this.mEditText = editText;
-        hideSystemSofeKeyboard(mActivity.getApplicationContext(), mEditText);
+        hideSystemSofeKeyboard(mMainActivity.getApplicationContext(), mEditText);
 
         mKeyboardView.setKeyboard(mKeyboard);
         mKeyboardView.setEnabled(true);
@@ -60,6 +59,7 @@ public class SoftKeyboard {
             int start = mEditText.getSelectionStart();
             if (primaryCode == Keyboard.KEYCODE_CANCEL) {// 完成
                 hide();
+                mMainActivity.onSoftKeyboardFinish();
             } else if (primaryCode == Keyboard.KEYCODE_DELETE) {// 回退
                 if (editable != null && editable.length() > 0) {
                     if (start > 0) {
