@@ -132,8 +132,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             mTextView.setText(String.format("已输入单词: %s", word));
 
             mResultTextView.setText("");
-            mResultTextView.append(String.format("Max acc list: %s\n", toString(mMaxAccList, "%.2f")));
-            mResultTextView.append(String.format("Avg touch size list: %s\n", toString(mAvgTouchSizeList, "%.4f")));
+            mResultTextView.append(String.format("Word: %s\n", word));
+            String maxAccList = toString(mMaxAccList, "%.2f");
+            String avgTouchSizeList = toString(mAvgTouchSizeList, "%.4f");
+            mResultTextView.append(String.format("Max acc list: %s\n", maxAccList));
+            mResultTextView.append(String.format("Avg touch size list: %s\n", avgTouchSizeList));
 
             // Reset word
             mMaxAccList.clear();

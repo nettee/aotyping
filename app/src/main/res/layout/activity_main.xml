@@ -10,8 +10,8 @@
         android:id="@+id/editText_word"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="48dp"
-        android:layout_marginRight="48dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
         android:layout_marginTop="8dp"
         android:hint="请输入单词"
         android:inputType="text" />
@@ -49,6 +49,9 @@
         android:layout_alignStart="@+id/seekBar"
         android:layout_below="@+id/seekBar"
         android:layout_marginTop="16dp"
+        android:textIsSelectable="true"
+        android:maxLines="16"
+        android:scrollbars="vertical"
         />
 
     <TextView
@@ -62,6 +65,8 @@
         android:layout_below="@+id/textView_log"
         android:layout_marginTop="16dp"
         android:textIsSelectable="true"
+        android:lines="8"
+        android:scrollbars="vertical"
         />
 
     <include
